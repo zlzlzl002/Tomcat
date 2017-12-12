@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+	version="3.1">
+	<display-name>Step01_Servlet</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+	</welcome-file-list>
+	<!-- 서블릿 정의하기 == @WebServlet("/person") Server 설정 -->
+	<servlet>
+		<!-- class 이름 (마음대로 정의가능) [단 <servlet-name>끼리는 같아야한다.] -->
+		<servlet-name>PersonServlet</servlet-name>
+		<!-- package 이름.class 이름 -->
+
+		<servlet-class>test.servlet.PersonServlet</servlet-class>
+	</servlet>
+	<!-- 서블릿 맵핑하기 -->
+	<servlet-mapping>
+		<servlet-name>PersonServlet</servlet-name>
+		<url-pattern>/person</url-pattern>
+	</servlet-mapping>
+
+	<!-- Picture 서블릿 정의 하기  -->
+	<servlet>
+		<servlet-name>PictureServlet</servlet-name>
+		<servlet-class>test.servlet.PictureServlet</servlet-class>
+	</servlet>
+	<!-- 서블릿 맵핑하기 -->
+	<servlet-mapping>
+		<servlet-name>PictureServlet</servlet-name>
+		<url-pattern>/today/picture</url-pattern>
+	</servlet-mapping>
+</web-app>
