@@ -18,6 +18,7 @@
 	<h3>회원 목록 불러오기</h3>
 	<table>
 	<a href="insertform.jsp">회원 정보 추가하기</a>
+	<a href="index.html">인덱스가기</a>
 		<thead>
 			<tr>
 				<th>번호</th>

@@ -13,7 +13,7 @@
 </head>
 <body>
 <p>회원정보 추가하기 </p>
-<form action="insert.jsp" method="post">
+<form action="/Servlet/insert.jsp" method="post">
 <input type="hidden" name="num" id="num" />
 <input type="text" name="name" id="name" />
 <input type="text" name="addr" id="addr" />

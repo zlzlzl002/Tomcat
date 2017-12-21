@@ -23,8 +23,8 @@
 			success:function(data){ // ajax 응답 = jsp 있는 문자열 | function(data)
 				// data 는 object 이다.
 				// object 의 구조 : {response:"xxxx"}
-				//alert(data);
-				console.log(data);
+				alert(data);
+				//console.log(data);
 			}
 		});
 	});
