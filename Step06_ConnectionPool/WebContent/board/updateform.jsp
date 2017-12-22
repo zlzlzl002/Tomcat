@@ -10,6 +10,7 @@
 </head>
 <body>
 <%
+	
 	//1. GET 방식 파마미터로 전달되는 수정할 글의 번호를 읽어온다.
 	int num=Integer.parseInt(request.getParameter("num"));
 

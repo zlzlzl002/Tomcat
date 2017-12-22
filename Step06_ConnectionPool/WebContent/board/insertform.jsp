@@ -9,7 +9,7 @@
 <body>
 <form action="insert.jsp" method="post">
 	<label for="writer">작성자</label>
-	<input type="text" name="writer" id="writer" /><br/>
+	<input type="text" name="writer" id="writer"/><br/>
 	<label for="title">제목</label>
 	<input type="text" name="title" id="title" /><br/>
 	<label for="cotent">내용</label>

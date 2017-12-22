@@ -23,6 +23,7 @@
 	dto.setTitle(title);
 	dto.setContent(content);
 	
+	
 	BoardDao.getInstance().insert(dto);
 %>
 <h3>새글 정보를 추가했어요</h3>

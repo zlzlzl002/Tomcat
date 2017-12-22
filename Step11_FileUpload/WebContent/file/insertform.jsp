@@ -7,21 +7,19 @@
 <title>insertform.jsp</title>
 </head>
 <body>
-<!-- 
-	 [ 파일 업로드 폼 작성법 ]
-	 
-	 1. method="post"
-	 2. enctype="multipart/form-data"
-	 3. <input type="file" />
- -->
+<%
+	// session id 값 가져오기
+	String id = (String)session.getAttribute("id");
+%>
 <h3>파일 업로드 폼입니다.</h3>
-<form action="insert.jsp" method="post" 
+<form action="insert_commons.jsp" method="post" 
 				enctype="multipart/form-data"> 
 				<!-- enctype="multipart/form-data" <=파일 업로드 하려면 꼭코딩 해야함 -->
 	<table>
 		<tr>
 			<th><label for="writer">작성자</label></th>
-			<td><input type="text" name="writer" id="writer"/></td>
+			<td><input type="text" name="writer" id="writer" value="<%=id %>" disabled="disabled"/></td>
+			<td><input type="hidden" name="writer" id="writer" value="<%=id %>" /></td>
 		</tr>
 		<tr>
 			<th><label for="title">제목</label></th>

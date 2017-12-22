@@ -5,6 +5,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
+	/*
+		http://servlets.com/cos/ 에서 압축 파일을 받아서
+		안에 들어있는 cos.jar 파일을 
+		WEB-INF/lib/ 폴더에 넣어주면 아래와 같이 파일 업로드 
+		처리를 할수 있다.
+	*/
+	
 	// 파일을 저장할 폴더의 절대 경로를 얻어온다.
 	String realPath=application.getRealPath("/upload");
 	// 콘솔에 테스트로 출력해보기
@@ -33,7 +40,7 @@
 	dto.setOrgFileName(orgFileName);
 	dto.setSaveFileName(saveFileName);
 	dto.setFileSize(fileSize);
-	// FileDao 객체를 이용해서 DB 에 저장하고
+	// FileDao 객체를 이용해서 DB 에 저장하고 Business Logic
 	boolean isSuccess=FileDao.getInstance().insert(dto);
 	// 응답한다.	
 %>
@@ -44,6 +51,7 @@
 <title>file/insert.jsp</title>
 </head>
 <body>
+<!-- response  -->
 <%if(isSuccess){%>
 	<p>파일을 업로드 했습니다.</p>
 	<a href="list.jsp">목록보기</a>
