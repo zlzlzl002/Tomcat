@@ -5,22 +5,37 @@
 <head>
 <meta charset="UTF-8">
 <title>index.jsp</title>
+<jsp:include page="resource.jsp"></jsp:include>
 </head>
 <body>
 <%
 	// session 영억 아이디 값 가져오기
 	String id=(String)session.getAttribute("id");
 %>
-<h3>인덱스 페이지 입니다.</h3>
-<%if(id != null) {%>
-	<p><a href="member/private/info.jsp"><%=id %>.. 님로그인중</p></a>
-	<a href="member/logout.jsp">로그아웃</a>
-	<a href="board/list.jsp">목록 보기</a>
-	<a href="file/list.jsp">파일 올리기</a>
-<%} %>
-<ul>
-	<li><a href="member/signup_form.jsp">회원가입</a></li>
-	<li><a href="member/login_form.jsp?url=${pageContext.request.contextPath }/">로그인</a></li>
-</ul>
+<div class="container">
+	<div class="navbar-inverse">
+		<div class="navbar-header">
+			<button class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span calss="icon-bar"></span>			
+			</button>
+			 <a class="navbar-brand" href="#">PRO</a>
+		</div>
+			  <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">전체보기</a></li>
+        <li><a href="member/logout.jsp">로그아웃</a></li>
+        <li><a href="board/list.jsp">목록보기</a></li>
+        <li><a href="file/list.jsp">파일 올리기</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+     	<li><a href="member/signup_form.jsp">회원가입</a></li>
+     	<li><a href="member/login_form.jsp?url=${pageContext.request.contextPath }">로그인</a></li>
+      </ul>
+    </div>
+	</div>
+</div>
+
 </body>
 </html>
