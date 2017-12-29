@@ -31,6 +31,7 @@ body {
 	%>
 	<div class="container">
 		<div class="row">
+			<div class="col-sm-6 col-sm-offset-3">
 			<div class="page-header">
 				<h2>로그인</h2>
 			</div>
@@ -59,6 +60,7 @@ body {
 				</form>
 			</div>
 		</div>
+	</div>
 	</div>
 </body>
 </html>
