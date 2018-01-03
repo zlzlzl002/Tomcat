@@ -12,20 +12,35 @@ public class CafeUpdateAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		//1. 폼전송된 수정할 글의 정보 얻어오기
 		int num=Integer.parseInt(request.getParameter("num"));
 		String title=request.getParameter("title");
 		String content=request.getParameter("ir1");
-		
-		CafeDto dto = new CafeDto();
+		//2. DB 에 수정 반영
+		CafeDto dto=new CafeDto();
 		dto.setNum(num);
 		dto.setTitle(title);
 		dto.setContent(content);
-		
+		//수정 반영 
 		CafeDao.getInstance().update(dto);
 		
-		ActionForward af = new ActionForward("/cafe/list.do");
+		//3. 글목록 보기로 redirect 이동 
+		ActionForward af=new ActionForward("/cafe/list.do");
 		af.setRedirect(true);
 		return af;
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+

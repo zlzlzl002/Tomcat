@@ -17,9 +17,8 @@ public class CafeDeleteAction extends Action{
 		CafeDao.getInstance().delete(num);
 		//3. 글목록 보기로 redirect 이동
 		
-		ActionForward af = new ActionForward("/cafe/list.do");
+		ActionForward af=new ActionForward("/cafe/list.do");
 		af.setRedirect(true);
-		
 		return af;
 	}
 

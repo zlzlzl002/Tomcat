@@ -17,7 +17,7 @@
 <%-- 로그인한 회원이 작성한 글이라면 수정, 삭제 링크를 출력한다 --%>
 <c:if test="${id eq dto.writer }">
 	<a href="private/updateform.do?num=${dto.num }">수정</a>
-	<a href="javascript:deleteConfirm()">삭제</a>
+	<a href="javascript:deleteCheck()">삭제</a>
 </c:if>
 <table>
 	<tr>
@@ -35,7 +35,7 @@
 </table>
 <div class="content">${dto.content }</div>
 <script>
-	function deleteConfirm(){
+	function deleteCheck(){
 		var isDelete=confirm("글을 삭제 하시겠습니까?");
 		if(isDelete){
 			location.href="private/delete.do?num=${dto.num}";

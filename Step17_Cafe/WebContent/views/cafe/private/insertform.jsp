@@ -6,10 +6,9 @@
 <head>
 <meta charset="UTF-8">
 <title>views/cafe/private/insertform.jsp</title>
-<!-- SmartEditor 를 실행시키려면 javascript 로딩 -->
+<!-- SmartEditor 관련 javascript 로딩 -->
 <script src="${pageContext.request.contextPath }/
 	SmartEditor/js/HuskyEZCreator.js"></script>
-
 </head>
 <body>
 <h3>카페 새글 입력 페이지 입니다.</h3>
@@ -52,8 +51,7 @@ nhn.husky.EZCreator.createInIFrame({
 	},
 	fCreator: "createSEditor2"
 });
-// img 이미지는 <img src="/Step17_Cafe/upload/xxx.jsp"/> 같은 형식이다
-// uplod 폴더를 만들어야지 사용가능 하다 lib 폴더에 commons-io,fileupload.jar넣어야함
+
 function pasteHTML() {
 	var sHTML = "<span style='color:#FF0000;'>이미지도 같은 방식으로 삽입합니다.<\/span>";
 	oEditors.getById["ir1"].exec("PASTE_HTML", [sHTML]);
@@ -69,9 +67,10 @@ function submitContents(elClickedObj) {
 	
 	// 에디터의 내용에 대한 값 검증은 이곳에서 document.getElementById("ir1").value를 이용해서 처리하면 됩니다.
 	
-	// 검증후 폼의 전송을 막고 싶으면 return false;
+	//검증후 폼의 전송을 막고 싶으면 return false; 
+	
 	try {
-		elClickedObj.form.submit(); // 폼전송
+		elClickedObj.form.submit();//폼전송
 	} catch(e) {}
 }
 
