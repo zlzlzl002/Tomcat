@@ -14,12 +14,41 @@ import test.controller.ActionForward;
  */
 public class CafeListAction extends Action{
 	//한 페이지에 나타낼 로우의 갯수
-	private static final int PAGE_ROW_COUNT=5;
+	private static final int PAGE_ROW_COUNT=3;
 	//하단 디스플레이 페이지 갯수
 	private static final int PAGE_DISPLAY_COUNT=5;
 	
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		/*
+		 *  request 에 검색 keyword 가 전달 될수도 있고 안될수도 있다.
+		 *  1. 전달 안되는 경우 : index.jsp 에서 목록보기를 누른경우
+		 *  2. 전달 되는 경우 : list.jsp 에서 검색어를 입력후 form 전송한
+		 *     경우. 
+		 *  3. 전달 되는 경우 : 이미 검색을 한 상태에서 페이지 링크를 
+		 *     누른경우
+		 */
+		//검색과 관련된 파라미터를 읽어와 본다.
+		String keyword=request.getParameter("keyword");
+		String condition=request.getParameter("condition");
+		
+		//CafeDto 객체를 생성해서
+		CafeDto dto=new CafeDto();
+		if(keyword != null){ //검색어가 전달된 경우
+			if(condition.equals("titlecontent")){ //제목+내용 검색
+				dto.setTitle(keyword);
+				dto.setContent(keyword);
+			}else if(condition.equals("title")){//제목 검색
+				dto.setTitle(keyword);
+			}else if(condition.equals("writer")){//작성자 검색
+				dto.setWriter(keyword);
+			}
+			// list.jsp 뷰페이지에서 필요한 내용을 request 에 담는다.
+			request.setAttribute("condition", condition);
+			request.setAttribute("keyword", keyword);
+		}
+		
+		
 		//보여줄 페이지의 번호
 		int pageNum=1;
 		//보여줄 페이지의 번호가 파라미터로 전달되는지 읽어온다.
@@ -46,8 +75,7 @@ public class CafeListAction extends Action{
 		if(totalPageCount < endPageNum){
 			endPageNum=totalPageCount; //보정해준다. 
 		}
-		// CafeDto 에 필요한 값을 담고 
-		CafeDto dto=new CafeDto();
+		
 		dto.setStartRowNum(startRowNum);
 		dto.setEndRowNum(endRowNum);
 		
