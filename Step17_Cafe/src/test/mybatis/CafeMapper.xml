@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cafe">
+	<!-- 자주 사용하는 sql 문을 미리 정의 해 놓기 -->
+	<sql id="cafeColumns">
+	<!-- dto 필드명과 select 칼럼명 같아가능하다 스펠링만 같으면됨-->
+		num,writer,title,content,viewCount,
+		TO_CHAR(regdate, 'YY.MM.DD HH24:MI') AS regdate
+	</sql>
+	
+	<!-- 글 목록 얻어오기  -->
+	<select id="getList" resultType="test.cafe.dto.CafeDto">
+		SELECT <include refid="cafeColumns"/>
+		FROM board_cafe
+		ORDER BY num DESC
+	</select>
+	
+	<insert id="insert" parameterType="test.cafe.dto.CafeDto">
+		INSERT INTO board_cafe
+		(num, writer, title, content, viewCount, regdate)
+		VALUES(board_cafe_seq.NEXTVAL, 
+		#{writer}, #{title}, #{content}, #{viewCount}, SYSDATE)
+	</insert>
+	
+	<!-- 조회수 1증가  -->
+	<update id="increaseViewCount" parameterType="int">
+		UPDATE board_cafe
+		SET viewCount=viewCount+1
+		WHERE num=#{num}  	
+	</update>
+	
+	<!--  글정보를 리턴  detail -->
+	<select id="getData" parameterType="int" resultType="test.cafe.dto.CafeDto">
+		SELECT <include refid="cafeColumns"/>
+		FROM board_cafe
+		WHERE num=#{num}
+	</select>
+	
+	<!--  글정보 삭제 -->
+	<delete id="delete" parameterType="int">
+		DELETE FORM board_cafe
+		WHERE num=#{num}
+	</delete>
+	
+	<!-- 글정보 수정 -->
+	<update id="update" parameterType="test.cafe.dto.CafeDto">
+		UPDATE board_cafe
+		SET content=#{content},title=#{title}
+		WHERE num=#{num}
+	</update>
+	
+	<!-- 글전체 갯수 리턴 -->
+	<select  id="getCount" resultType="int">
+		<!-- NVL => TABLE 데이터가 없으면 NULL , 0 임
+			 MAX(ROWNUM)을 알면 전체 로우 갯수를 알수있다. -->
+		SELECT NVL(MAX(ROWNUM), 0) 
+		FROM board_cafe
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
