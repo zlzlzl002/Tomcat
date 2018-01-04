@@ -12,7 +12,18 @@
 		SELECT *
 		FROM (SELECT result1.*,ROWNUM rnum
 			  FROM (SELECT <include refid="cafeColumns"/>
-			  		FROM board_cafe
+			  		FROM board_cafe 
+			  		<where>
+						<if test="writer != null">
+							OR writer LIKE '%'||#{writer}||'%'
+						</if>
+						<if test="title != null">
+							OR title LIKE '%'||#{title}||'%'
+						</if>
+						<if test="content != null">
+							OR content LIKE '%'||#{content}||'%'
+						</if>
+					</where>	
 			  		ORDER BY num DESC) result1
 			  )
 		WHERE rnum BETWEEN #{startRowNum} AND #{endRowNum}
@@ -31,10 +42,26 @@
 		WHERE num=#{num}
 	</update>
 	
-	<select id="getData" parameterType="int"
+	<select id="getData" parameterType="test.cafe.dto.CafeDto"
 	 	resultType="test.cafe.dto.CafeDto">
-	 	SELECT <include refid="cafeColumns"/>
-	 	FROM board_cafe
+	 	SELECT result1.*
+	 	FROM
+		 	( SELECT <include refid="cafeColumns"/>,
+		 	LEAD(num, 1, 0) OVER(ORDER BY num DESC) nextNum,
+		 	LAG(num, 1, 0) OVER(ORDER BY num DESC) prevNum
+		 	FROM board_cafe
+		 	<where>
+				<if test="writer != null">
+					OR writer LIKE '%'||#{writer}||'%'
+				</if>
+				<if test="title != null">
+					OR title LIKE '%'||#{title}||'%'
+				</if>
+				<if test="content != null">
+					OR content LIKE '%'||#{content}||'%'
+				</if>
+			</where>
+		 	ORDER BY num DESC ) result1
 	 	WHERE num=#{num}
 	 </select>
 	 
@@ -49,9 +76,21 @@
 	 	WHERE num=#{num}
 	 </update>
 	 
-	 <select id="getCount" resultType="int">
-	 	SELECT NVL(MAX(ROWNUM), 0) 
-	 	FROM board_cafe
+	 <select id="getCount" resultType="int" 
+	 		parameterType="test.cafe.dto.CafeDto">
+		SELECT NVL(MAX(ROWNUM), 0) 
+		FROM board_cafe
+		<where>
+			<if test="writer != null">
+				OR writer LIKE '%'||#{writer}||'%'
+			</if>
+			<if test="title != null">
+				OR title LIKE '%'||#{title}||'%'
+			</if>
+			<if test="content != null">
+				OR content LIKE '%'||#{content}||'%'
+			</if>
+		</where>	
 	 </select>
 </mapper>
 
