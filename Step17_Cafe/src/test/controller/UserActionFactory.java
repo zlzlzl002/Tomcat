@@ -10,6 +10,7 @@ import test.cafe.action.CafeListAction;
 import test.cafe.action.CafeUpdateAction;
 import test.cafe.action.CafeUpdateFormAction;
 import test.file.action.FileDeleteAction;
+import test.file.action.FileDownAction;
 import test.file.action.FileInsertAction;
 import test.file.action.FileInsertFormAction;
 import test.file.action.FileListAction;
@@ -80,6 +81,8 @@ public class UserActionFactory {
 			action=new FileInsertAction();
 		}else if(command.equals("/file/private/delete")) {
 			action=new FileDeleteAction();
+		}else if(command.equals("/file/private/download")) {
+			action=new FileDownAction();
 		}
 		return action;
 	}

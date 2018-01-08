@@ -48,6 +48,7 @@ public class FileDao {
 		return list;
 	}
 	
+	// 파일의 정보를 리턴해주는 메소드
 	public FileDto getData(int num) {
 		SqlSession session=null;
 		FileDto dto =null;
@@ -62,6 +63,7 @@ public class FileDao {
 		return dto;
 	}
 	
+	// 파일정보를 삭제해주는 메소드
 	public void delete(int num) {
 		SqlSession session=null;
 		try {

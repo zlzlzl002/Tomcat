@@ -28,7 +28,7 @@
 				<td>${tmp.num }</td>
 				<td>${tmp.writer }</td>
 				<td>${tmp.title }</td>
-				<td>${tmp.orgFileName }</td>
+				<td><a href="private/download.do?num=${tmp.num }">${tmp.orgFileName }</a></td>
 				<td>${tmp.fileSize }</td>
 				<td>${tmp.regdate }</td>
 				<td><a href="private/delete.do?num=${tmp.num }">삭제</a></td>
