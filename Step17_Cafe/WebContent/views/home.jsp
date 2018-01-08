@@ -7,6 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>views/home.jsp</title>
+<jsp:include page="resouces.jsp"></jsp:include>
 </head>
 <body>
 <h3>인덱스 페이지 입니다.</h3>

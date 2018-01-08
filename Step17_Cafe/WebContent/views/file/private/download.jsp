@@ -8,10 +8,10 @@
     pageEncoding="UTF-8"%>
 <%
 	
-	// request에 담긴 파일의 정보를 얻어와서
+	// request 에 담긴 파일의 정보를 얻어와서 
 	FileDto dto=(FileDto)request.getAttribute("dto");
- 	
-	//다운로드 시켜주기 ... 
+
+ 	//다운로드 시켜주기 ... 
 	String orgFileName=dto.getOrgFileName(); //원본 파일명
 	String saveFileName=dto.getSaveFileName(); //저장된 파일명
 	

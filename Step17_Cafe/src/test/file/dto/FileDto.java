@@ -8,11 +8,15 @@ public class FileDto {
 	private String saveFileName; //저장된 파일명
 	private long fileSize; //파일의 크기 byte 는 큰 숫자 일수 있으므로
 	private String regdate;
+	private int startRowNum; //시작 row 번호
+	private int endRowNum; //끝 row 번호
+	private int prevNum; //이전글의 글번호
+	private int nextNum;//다음글의 글번호
 	
 	public FileDto() {}
 
 	public FileDto(int num, String writer, String title, String orgFileName, String saveFileName, long fileSize,
-			String regdate) {
+			String regdate, int startRowNum, int endRowNum, int prevNum, int nextNum) {
 		super();
 		this.num = num;
 		this.writer = writer;
@@ -21,6 +25,10 @@ public class FileDto {
 		this.saveFileName = saveFileName;
 		this.fileSize = fileSize;
 		this.regdate = regdate;
+		this.startRowNum = startRowNum;
+		this.endRowNum = endRowNum;
+		this.prevNum = prevNum;
+		this.nextNum = nextNum;
 	}
 
 	public int getNum() {
@@ -78,6 +86,39 @@ public class FileDto {
 	public void setRegdate(String regdate) {
 		this.regdate = regdate;
 	}
+
+	public int getStartRowNum() {
+		return startRowNum;
+	}
+
+	public void setStartRowNum(int startRowNum) {
+		this.startRowNum = startRowNum;
+	}
+
+	public int getEndRowNum() {
+		return endRowNum;
+	}
+
+	public void setEndRowNum(int endRowNum) {
+		this.endRowNum = endRowNum;
+	}
+
+	public int getPrevNum() {
+		return prevNum;
+	}
+
+	public void setPrevNum(int prevNum) {
+		this.prevNum = prevNum;
+	}
+
+	public int getNextNum() {
+		return nextNum;
+	}
+
+	public void setNextNum(int nextNum) {
+		this.nextNum = nextNum;
+	}
+
 	
 	
 }

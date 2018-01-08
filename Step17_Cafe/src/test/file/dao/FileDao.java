@@ -33,13 +33,28 @@ public class FileDao {
 		}
 	}
 	
+	// 파일 목록의 갯수를 리턴해주는 메소드
+	public int getCount(FileDto dto) {
+		SqlSession session=null;
+		int count=0;
+		try {
+			session=factory.openSession();
+			count=session.selectOne("file.getCount",dto);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+		return count;
+	}
+	
 	//파일 목록을 리턴해주는 메소드
-	public List<FileDto> getList(){
+	public List<FileDto> getList(FileDto dto){
 		SqlSession session=null;
 		List<FileDto> list=null;
 		try {
 			session=factory.openSession();
-			list=session.selectList("file.getList");
+			list=session.selectList("file.getList",dto);
 		}catch(Exception e) {
 			e.printStackTrace();
 		}finally {
@@ -48,20 +63,25 @@ public class FileDao {
 		return list;
 	}
 	
-	// 파일의 정보를 리턴해주는 메소드
+	
+	//파일의 정보를 리턴해주는 메소드
 	public FileDto getData(int num) {
-		SqlSession session=null;
-		FileDto dto =null;
-		try {
-			session=factory.openSession(true);
-			dto=session.selectOne("file.getData",num);
-		}catch(Exception e) {
-			e.printStackTrace();
-		}finally {
-			session.close();
+			SqlSession session=null;
+			FileDto dto=null;
+			try {
+				session=factory.openSession();
+				/*
+				 *  parameterType : int
+				 *  resultType : FileDto
+				 */
+				dto=session.selectOne("file.getData", num);
+			}catch(Exception e) {
+				e.printStackTrace();
+			}finally {
+				session.close();
+			}
+			return dto;
 		}
-		return dto;
-	}
 	
 	// 파일정보를 삭제해주는 메소드
 	public void delete(int num) {

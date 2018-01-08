@@ -6,11 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>views/file/list.jsp</title>
+<jsp:include page="resouces.jsp"></jsp:include>
 </head>
 <body>
 <a href="private/insertform.do">파일 업로드</a>
 <h3>파일 목록입니다.</h3>
-<table>
+<div class="container">
+<table  class="table table-bordered">
 	<thead>
 		<tr>
 			<th>번호</th>
@@ -28,7 +30,7 @@
 				<td>${tmp.num }</td>
 				<td>${tmp.writer }</td>
 				<td>${tmp.title }</td>
-				<td><a href="download.do?num=${tmp.num }">${tmp.orgFileName }</a></td>
+				<td><a href="private/download.do?num=${tmp.num }">${tmp.orgFileName }</a></td>
 				<td>${tmp.fileSize }</td>
 				<td>${tmp.regdate }</td>
 				<td>
@@ -41,6 +43,56 @@
 		</c:forEach>
 	</tbody>
 </table>
+<ul class="pagination">
+		<c:choose>
+			<c:when test="${startPageNum ne 1 }">
+				<li>
+					<a href="list.do?pageNum=${startPageNum-1 }">&laquo;</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="disabled">
+					<a href="javascript:">&laquo;</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
+		<c:forEach var="i" begin="${startPageNum }" 
+				end="${endPageNum }">	
+			<c:choose>
+				<c:when test="${i eq pageNum }">
+					<li class="active"><a href="list.do?pageNum=${i }">${i }</a></li>
+				</c:when>
+				<c:otherwise>
+					<li><a href="list.do?pageNum=${i }">${i }</a></li>
+				</c:otherwise>
+			</c:choose>
+		</c:forEach>
+		<c:choose>
+			<c:when test="${endPageNum lt totalPageCount }">
+				<li>
+					<!-- 다음 눌렀을때 바로4로 감 -->
+					<a href="list.do?pageNum=${endPageNum+1 }">&raquo;</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="disabled">
+					<a href="javascript:">&raquo;</a>
+				</li>
+			</c:otherwise>
+		</c:choose>
+	</ul>
+	<!-- 검색어 관련 form -->
+	<form action="list.do" method="post">
+		<label for="condition">검색조건</label>
+		<select name="condition" id="condition">
+			<option value="orgFileName" <c:if test="${condition eq 'orgFileName' }">selected</c:if> >제목+파일명</option>
+			<option value="title" <c:if test="${condition eq 'title' }">selected</c:if>>제목</option>
+			<option value="writer" <c:if test="${condition eq 'writer' }">selected</c:if>>작성자</option>
+		</select>
+		<input value="${keyword }" type="text" name="keyword" placeholder="검색어"/>
+		<button type="submit">검색</button>
+	</form>
+</div>
 <script>
 	function deleteConfirm(num){
 		var result=confirm(num+" 번 파일을 삭제 하시겠습니까?");
