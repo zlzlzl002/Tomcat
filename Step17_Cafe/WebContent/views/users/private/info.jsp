@@ -8,10 +8,6 @@
 <title>views/users/private/info.jsp</title>
 </head>
 <body>
-<%
-	//request 영역에 담긴 사용자 정보 읽어오기
-	UsersDto dto=(UsersDto)request.getAttribute("dto");
-%>
 <h3>회원 가입된 개인 정보 입니다.</h3>
 <table>
 	<thead>
@@ -23,15 +19,15 @@
 	<tbody>
 		<tr>
 			<th>아이디</th>
-			<td><%=dto.getId() %></td>
+			<td>${dto.id }</td>
 		</tr>
 		<tr>
 			<th>이메일</th>
-			<td><%=dto.getEmail() %></td>
+			<td>${dto.email }</td>
 		</tr>
 		<tr>
 			<th>가입일</th>
-			<td><%=dto.getRegdate() %></td>
+			<td>${dto.regdate }</td>
 		</tr>
 	</tbody>
 </table>

@@ -28,8 +28,11 @@ public class FileDeleteAction extends Action{
 	 		File.separator+saveFileName;
 	 	//File 객체생성해서 삭제하기 
 	 	new File(path).delete();
-	 
-	 	return new ActionForward("/views/file/private/delete.jsp");
+	 	
+	 	// 파일 목록보기로 리다일렉트 이동
+	 	ActionForward af=new ActionForward("/file/list.do");
+	 	af.setRedirect(true);
+	 	return af;
 	}
 
 }
