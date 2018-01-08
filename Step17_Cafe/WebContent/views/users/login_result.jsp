@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,6 +23,7 @@
 	<p>아이디 혹은 비밀 번호가 틀려요</p>
 	<a href="login_form.do?url=<%=url%>">로그인 폼으로 돌아가기</a>
 <%} %>
+
 </body>
 </html>
 
