@@ -8,13 +8,13 @@ import test.cafe.dto.CafeCommentDto;
 import test.controller.Action;
 import test.controller.ActionForward;
 /*
- *	댓글 저장하는 액션
+ *  덧글 저장하는 액션 
  */
-public class CafeCommentInsertAction extends Action {
+public class CafeCommentInsertAction extends Action{
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
-		// 1. 파라미터로 전달되는 덧글 정보 읽어오기
+		//1. 파라미터로 전달되는 덧글 정보 읽어오기
 		String writer=request.getParameter("writer");
 		int ref_group=Integer.parseInt
 				(request.getParameter("ref_group"));
@@ -26,7 +26,7 @@ public class CafeCommentInsertAction extends Action {
 		//저장할 덧글 번호를 미리 읽어온다.
 		int seq=CafeCommentDao.getInstance().getSequence();
 		
-		// 2. 새 덧글 정보를 dto 에 담고
+		//2. 새 덧글 정보를 dto 에 담고
 		CafeCommentDto dto=new CafeCommentDto();
 		dto.setNum(seq);
 		dto.setWriter(writer);
@@ -40,12 +40,21 @@ public class CafeCommentInsertAction extends Action {
 			//파라미터로 넘어온 덧글의 그룹번호를 넣어준다.
 			dto.setComment_group(Integer.parseInt(comment_group));
 		}
-		// 3. DB 에 저장하고
+		//3. DB 에 저장하고
 		CafeCommentDao.getInstance().insert(dto);
-		// 4. 글 자세히 보기로 다시 리다일렉트 시킨다.
-		ActionForward af =new ActionForward("/cafe/detail.do?num="+ref_group);
+		//4. 글 자세히 보기로 다시 리다일렉트 시킨다.
+		ActionForward af=
+				new ActionForward("/cafe/detail.do?num="+ref_group);
 		af.setRedirect(true);
 		return af;
 	}
-
+	
 }
+
+
+
+
+
+
+
+

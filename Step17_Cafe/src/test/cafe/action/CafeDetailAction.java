@@ -1,9 +1,13 @@
 package test.cafe.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import test.cafe.dao.CafeCommentDao;
 import test.cafe.dao.CafeDao;
+import test.cafe.dto.CafeCommentDto;
 import test.cafe.dto.CafeDto;
 import test.controller.Action;
 import test.controller.ActionForward;
@@ -42,6 +46,11 @@ public class CafeDetailAction extends Action{
 		CafeDto resultDto=CafeDao.getInstance().getData(dto);
 		//4. 글정보를 request 에 담는다.
 		request.setAttribute("dto", resultDto);
+		//5. 글번호에 해당하는 덧글 목록을 얻어온다.
+		List<CafeCommentDto> commentList=
+				CafeCommentDao.getInstance().getList(num);
+		//6. 덧글 목록을 request 에 담는다.
+		request.setAttribute("commentList", commentList);
 		
 		String id = (String)request.getSession().getAttribute("id");
 		boolean isLogin=false;
@@ -50,7 +59,8 @@ public class CafeDetailAction extends Action{
 		}
 		//로그인 했는지 여부도 request 에 담는다.
 		request.setAttribute("isLogin", isLogin);
-		//5. 뷰페이지로 forward 이동해서 글정보를 응답한다.
+		
+		//5. view 페이지로 forward 이동해서 글 내용을 출력한다.  
 		return new ActionForward("/views/cafe/detail.jsp");
 	}
 
