@@ -25,6 +25,11 @@ public class FileDao {
 		SqlSession session=null;
 		try {
 			session=factory.openSession(true);
+			/*
+			 * 	Mapper namespace : file
+			 *  sql id : insert
+			 *  pmtype : dto
+			 */
 			session.insert("file.insert", dto);
 		}catch(Exception e) {
 			e.printStackTrace();

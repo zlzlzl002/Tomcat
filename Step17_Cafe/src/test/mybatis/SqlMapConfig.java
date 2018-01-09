@@ -11,7 +11,7 @@ public class SqlMapConfig {
 	private static SqlSessionFactory sqlSession;
 	//static 초기화
 	static{
-		//MyBatis 설정 xml 문서의 위치 
+		//MyBatis 설정 xml 문서의 위치  |    xml 문서 를 읽어온다
 		String resource="test/mybatis/Configuration.xml";
 		try{
 			Reader reader=Resources.getResourceAsReader(resource);

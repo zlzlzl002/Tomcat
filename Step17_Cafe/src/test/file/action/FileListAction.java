@@ -65,6 +65,10 @@ public class FileListAction extends Action{
 		//전체 페이지의 갯수 구하기
 		int totalPageCount=
 				(int)Math.ceil(totalRow/(double)PAGE_ROW_COUNT);
+		// 내가 한 코딩 다음 이전
+		int raquoRowNum=(pageNum+1);
+		int laquoRowNum=(pageNum);
+	
 		//시작 페이지 번호
 		int startPageNum=
 			1+((pageNum-1)/PAGE_DISPLAY_COUNT)*PAGE_DISPLAY_COUNT;
@@ -88,6 +92,11 @@ public class FileListAction extends Action{
 		request.setAttribute("pageNum", pageNum);
 		request.setAttribute("startPageNum", startPageNum);
 		request.setAttribute("endPageNum", endPageNum);
+		
+		// 내가 코딩
+		request.setAttribute("raquoRowNum", raquoRowNum);
+		request.setAttribute("laquoRowNum", laquoRowNum);
+		
 		// 전체 페이지의 갯수
 		request.setAttribute("totalPageCount", totalPageCount);
 		

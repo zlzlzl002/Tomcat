@@ -81,6 +81,39 @@
 			</c:otherwise>
 		</c:choose>
 	</ul>
+	
+	<!-- 다음 1칸 버튼 -->
+	<c:choose>
+			<c:when test="${laquoRowNum lt raquoRowNum }">
+				<li>
+					<a href="list.do?pageNum=${laquoRowNum+1 }">&raquo;</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="disabled">
+					<a href="javascript:">&raquo;</a>
+				</li>
+			</c:otherwise>
+	</c:choose>
+	
+	<!-- 이전 1칸 버튼  -->
+	<c:choose>
+			<c:when test="${laquoRowNum lt totalPageCount }">
+				<li>
+					<a href="list.do?pageNum=${laquoRowNum-1 }">&laquo;</a>
+				</li>
+			</c:when>
+			<c:when test="${laquoRowNum eq totalPageCount }">
+				<li>
+					<a href="list.do?pageNum=${laquoRowNum-1 }">&laquo;</a>
+				</li>
+			</c:when>
+			<c:otherwise>
+				<li class="disabled">
+					<a href="javascript:">&laquo;</a>
+				</li>
+			</c:otherwise>
+	</c:choose>
 	<!-- 검색어 관련 form -->
 	<form action="list.do" method="post">
 		<label for="condition">검색조건</label>
